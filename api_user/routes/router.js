@@ -4,6 +4,21 @@ var User = require('../models/user');
 var app = express();
 
 
+router.post('/login',function(req,res,next){
+  if (req.body.email && req.body.password) {
+    User.authenticate(req.body.email, req.body.password, function (error, user) {
+      if (error || !user) {
+        var err = new Error('Wrong email or password.');
+        err.status = 401;
+        return next(err);
+      } else {
+        req.session.userId = user._id;
+        res.json(req.session);
+        
+      }
+    });}
+  })
+
 //POST route for updating data
 router.post('/', function (req, res, next) {
   // confirm that user typed same password twice
