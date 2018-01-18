@@ -10,6 +10,10 @@
 
 angular.module('frontEndTodoApp')
   .controller('LoginCtrl', function ($scope,$location,$http,$rootScope) {
+    if(localStorage.getItem('user') != null){
+      $location.url('/')
+    }
+
     $scope.login = function(email,password) {
       var data = {
         email:email,

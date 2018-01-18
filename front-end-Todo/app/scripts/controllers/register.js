@@ -9,6 +9,9 @@
  */
 angular.module('frontEndTodoApp')
   .controller('RegisterCtrl', function ($scope,$http,$location) {
+    if(localStorage.getItem('user') != null){
+      $location.url('/')
+    }
     $scope.register = function(email,username,password,Confpassword) {
       var data = {
         username: username,

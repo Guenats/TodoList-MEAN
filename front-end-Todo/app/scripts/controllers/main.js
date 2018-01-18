@@ -9,10 +9,10 @@
  */
 
 angular.module('frontEndTodoApp')
-  .controller('MainCtrl', function ($scope,$http,$rootScope) {
+  .controller('MainCtrl', function ($scope,$http,$rootScope,$location) {
     $scope.formData = {};
-    if($rootScope.user != null){
-    $scope.user = $rootScope.user
+    if(localStorage.getItem('user') === null){
+      $location.url('/login')
     }
 
       $http.get("https://localhost:3001/todos/"+localStorage.getItem('user'))
@@ -57,5 +57,10 @@ angular.module('frontEndTodoApp')
       console.log('Error: ' + data);
     });
 };
+$scope.disconnect = function() {
+  localStorage.removeItem('user');
+  $location.url('/login')
+};
+
 
     });
