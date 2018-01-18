@@ -16,9 +16,6 @@ var app = express();
         } else {
           req.session.userId = user._id;
           res.status(200).send();
-          res.json({ message: 'post created!' });
-          
-          
         }
       });
     // Authenticated Passport user as Todo creator
@@ -58,9 +55,7 @@ router.get('/todosFind', function(req, res,next) {
           // Sort Todo by descending 'created' date
           User.find({creator: req.params.creator}).sort('-created').populate('creator', 'name username').exec(function(err, todos) {
             if(err) {
-              return res.status(400).send({
-                message: getErrorMessage(err)
-              });
+              return res.status(400).send();
             }
             else {
               res.json(todos);

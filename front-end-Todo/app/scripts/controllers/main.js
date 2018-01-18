@@ -7,11 +7,35 @@
  * # MainCtrl
  * Controller of the frontEndTodoApp
  */
+
 angular.module('frontEndTodoApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('MainCtrl', function ($scope,$http,$rootScope) {
+    $scope.formData = {};
+    if($rootScope.user != null){
+    $scope.user = $rootScope.user
+    }
+
+      $http.get("https://localhost:3001/todos/"+$scope.user)
+      .then(function successCallback(response){
+        console.log("Good");
+        $rootScope.user = response.data.userId;
+        $scope.todos = response.data
+
+      }, function errorCallback(response){
+          console.log("Unable to perform get request");
+      });
+
+      $scope.createTodo = function() {
+        var data = {
+          title:$scope.formData.text,
+          creator:$scope.user
+          };
+        $http.post('https://localhost:3001/todo', data)
+        .then(function successCallback(response){
+          $scope.todos.push(data);
+
+          },function errorCallback(response){
+          console.log('Error: ' + data);
+        });
+    };
+    });

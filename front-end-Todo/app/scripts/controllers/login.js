@@ -7,6 +7,7 @@
  * # MainCtrl
  * Controller of the frontEndTodoApp
  */
+
 angular.module('frontEndTodoApp')
   .controller('LoginCtrl', function ($scope,$location,$http,$rootScope) {
     $scope.login = function(email,password) {
@@ -18,7 +19,7 @@ angular.module('frontEndTodoApp')
       .then(function successCallback(response){
         console.log("Good");
         $rootScope.user = response.data.userId;
-        $location.url('/todosGroup')
+        $location.url('/')
 
       }, function errorCallback(response){
           console.log("Unable to perform get request");
