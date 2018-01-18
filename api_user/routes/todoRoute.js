@@ -63,4 +63,17 @@ router.get('/todosFind', function(req, res,next) {
           });
     })
 
+    router.put('/todo/:id', function(req, res) {
+      // Sort Todo by descending 'created' date
+      User.update({_id:req.params.id}, {completed:'true'},function(err,todos)
+      {
+        if(err) {
+          return res.status(400).send();
+        }
+        else {
+          return res.status(200).send();
+        }
+      });
+    });
+
 module.exports=router;

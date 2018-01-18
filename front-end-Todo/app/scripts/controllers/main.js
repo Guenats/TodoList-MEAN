@@ -48,4 +48,14 @@ angular.module('frontEndTodoApp')
         console.log('Error: ' + data);
       });
   };
+  $scope.checkTodo = function(todo) {
+    $http.put('https://localhost:3001/todo/'+todo._id)
+    .then(function successCallback(response){
+      console.log('Good !')
+
+      },function errorCallback(response){
+      console.log('Error: ' + data);
+    });
+};
+
     });
