@@ -10,7 +10,7 @@ var cors = require('cors')
 
 
 //connect to MongoDB
-mongoose.connect('mongodb://localhost/users');
+mongoose.connect('mongodb://guena:guena@ds261527.mlab.com:61527/todolist-angular');
 var db = mongoose.connection;
 
 //handle mongo error
