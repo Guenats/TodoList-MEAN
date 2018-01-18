@@ -15,7 +15,10 @@
                   <!-- LOOP OVER THE TODOS IN $scope.todos -->
                   <div class="checkbox" ng-repeat="todo in todos">
                       <label>
-                          <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.title }}
+                          <input type="checkbox" > {{ todo.title }}
+                          <button class="btn btn-default btn-sm" ng-click="deleteTodo(todo)">
+                            <span class="glyphicon glyphicon-trash"></span> Delete
+                          </button>
                       </label>
                   </div>
               </div>

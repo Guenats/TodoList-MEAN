@@ -15,7 +15,7 @@ angular.module('frontEndTodoApp')
     $scope.user = $rootScope.user
     }
 
-      $http.get("https://localhost:3001/todos/"+$scope.user)
+      $http.get("https://localhost:3001/todos/"+localStorage.getItem('user'))
       .then(function successCallback(response){
         console.log("Good");
         $rootScope.user = response.data.userId;
@@ -28,7 +28,7 @@ angular.module('frontEndTodoApp')
       $scope.createTodo = function() {
         var data = {
           title:$scope.formData.text,
-          creator:$scope.user
+          creator:localStorage.getItem('user')
           };
         $http.post('https://localhost:3001/todo', data)
         .then(function successCallback(response){
@@ -38,4 +38,14 @@ angular.module('frontEndTodoApp')
           console.log('Error: ' + data);
         });
     };
+    $scope.deleteTodo = function(todo) {
+      $http.delete('https://localhost:3001/todos/'+todo._id)
+      .then(function successCallback(response){
+        var index=$scope.todos.indexOf(todo)
+        $scope.todos.splice(index,1);
+
+        },function errorCallback(response){
+        console.log('Error: ' + data);
+      });
+  };
     });

@@ -47,7 +47,6 @@ router.post('/', function (req, res, next) {
       } else {
         req.session.userId = user._id;
         res.status(200).send();
-        res.json({ message: 'post created!' });
         
         
       }
@@ -62,7 +61,6 @@ router.post('/', function (req, res, next) {
       } else {
         req.session.userId = user._id;
         res.status(200).send();
-        res.json({ message: 'post created!' });
         
         
       }

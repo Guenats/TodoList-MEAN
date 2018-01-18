@@ -18,7 +18,9 @@ angular.module('frontEndTodoApp')
       $http.post("https://localhost:3001/login",data)
       .then(function successCallback(response){
         console.log("Good");
-        $rootScope.user = response.data.userId;
+        if(localStorage.getItem('user') === null){
+        localStorage.setItem('user',response.data.userId);
+        }
         $location.url('/')
 
       }, function errorCallback(response){
